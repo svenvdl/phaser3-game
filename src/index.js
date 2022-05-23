@@ -22,7 +22,7 @@ const config = {
         }
     },
     plugins: {
-        secene:[
+        scene:[
             {
                 plugin: PhaserMatterCollisionPlugin
             }

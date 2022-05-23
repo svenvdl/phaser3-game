@@ -1,0 +1,120 @@
+{
+    "anims": [
+        {
+            "key": "idle-up",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 1,
+            "frames": [
+                {
+                    "key": "player2",
+                    "frame": "player2-up-idle"
+                }
+            ]
+        },
+        {
+            "key": "up",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 8,
+            "frames": [
+                {
+                    "key": "player2",
+                    "frame": "player2-up-1"
+                },
+                {
+                    "key": "player2",
+                    "frame": "player2-up-2"
+                }
+            ]
+        },
+        {
+            "key": "idle-down",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 2,
+            "frames": [
+                {
+                    "key": "player2",
+                    "frame": "player2-down-idle"
+                },
+                {
+                    "key": "player2",
+                    "frame": "player2-down-idle"
+                }
+            ]
+        },
+        {
+            "key": "idle-left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 1,
+            "frames": [
+                {
+                    "key": "player2",
+                    "frame": "player2-left-idle"
+                }
+            ]
+        },
+        {
+            "key": "idle-right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 1,
+            "frames": [
+                {
+                    "key": "player2",
+                    "frame": "player2-right-idle"
+                }
+            ]
+        },
+        {
+            "key": "right",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 8,
+            "frames": [
+                {
+                    "key": "player2",
+                    "frame": "player2-right-1"
+                },
+                {
+                    "key": "player2",
+                    "frame": "player2-right-2"
+                }
+            ]
+        },
+        {
+            "key": "left",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 8,
+            "frames": [
+                {
+                    "key": "player2",
+                    "frame": "player2-left-1"
+                },
+                {
+                    "key": "player2",
+                    "frame": "player2-left-2"
+                }
+            ]
+        },
+        {
+            "key": "down",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 8,
+            "frames": [
+                {
+                    "key": "player2",
+                    "frame": "player2-down-2"
+                },
+                {
+                    "key": "player2",
+                    "frame": "player2-down-1"
+                }
+            ]
+        }
+    ]
+}
