@@ -80,7 +80,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite{
                     this.anims.play('idle-left', true);
                     break;
                 default:
-                    this.anims.play('idle-left', true);
+                    this.anims.play('idle-down', true);
             }
         }
     }
