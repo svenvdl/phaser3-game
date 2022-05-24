@@ -39,12 +39,14 @@ export default class MainScene extends Phaser.Scene {
         const pathLayer = map.createLayer('Path',[ tilesetNature, tilesetAutumn, tilesetFam, tilesetFountain, tilesetSchool],  this.cameras.main.width / 3, this.cameras.main.height / 4);
         const objectsLayer = map.createLayer('Objects',[ tilesetNature, tilesetAutumn, tilesetFam, tilesetFountain, tilesetSchool],  this.cameras.main.width / 3, this.cameras.main.height / 4);
         const zLayer = map.createLayer('Front',[ tilesetNature, tilesetAutumn, tilesetFam, tilesetFountain, tilesetSchool],  this.cameras.main.width / 3, this.cameras.main.height / 4);
+        const interactionLayer = map.createLayer('interaction',[ tilesetNature, tilesetAutumn, tilesetFam, tilesetFountain, tilesetSchool],  this.cameras.main.width / 3, this.cameras.main.height / 4);
 
         //set collision and depth
-        collisionLayer.setCollisionByProperty({collides:true}).setDepth(1);
-        environmentLayer.setCollisionByProperty({collides:true}).setDepth(2);
-        pathLayer.setCollisionByProperty({collides:true}).setDepth(3);
-        objectsLayer.setCollisionByProperty({collides:true}).setDepth(4);
+        interactionLayer.setCollisionByProperty({collides:true}).setDepth(3);
+        collisionLayer.setCollisionByProperty({collides:true}).setDepth(2);
+        environmentLayer.setCollisionByProperty({collides:true}).setDepth(3);
+        pathLayer.setCollisionByProperty({collides:true}).setDepth(4);
+        objectsLayer.setCollisionByProperty({collides:true}).setDepth(5);
         zLayer.setCollisionByProperty({collides:false}).setDepth(6);
         
         //convert to tilemaps
@@ -52,10 +54,43 @@ export default class MainScene extends Phaser.Scene {
         this.matter.world.convertTilemapLayer(environmentLayer);
         this.matter.world.convertTilemapLayer(pathLayer);
         this.matter.world.convertTilemapLayer(objectsLayer);
+        this.matter.world.convertTilemapLayer(interactionLayer);
         this.matter.world.convertTilemapLayer(zLayer);
 
+        //label all interaction tiles within the matter physics engine
+        objectsLayer.forEachTile(function (tile) {
+            if (tile.properties.type === 'enterOffice') {
+                console.log(tile);
+                tile.physics.matterBody.body.label = 'enterOffice';
+            }
+        });
+
+        function getRootBody(body){
+            if (body.parent === body) { 
+                return body; 
+            }
+            while (body.parent !== body){
+                body = body.parent;
+            }
+            return body;
+        }
+
+        this.matter.world.on('collisionstart', function (event) {
+            for (var i = 0; i < event.pairs.length; i++){
+                var bodyA = getRootBody(event.pairs[i].bodyA);
+                var bodyB = getRootBody(event.pairs[i].bodyB);
+                console.log(bodyA);
+                console.log(bodyB);
+            }
+            if ((bodyA.label === 'Body' && bodyB.label === 'enterOffice') || (bodyB.label === 'Body' && bodyA.label === 'enterOffice')){
+                console.log('getting hit!')
+                this.scene.pause('mainScene');
+                this.scene.start('officeScene');
+            }
+        }, this);
+
         //add player properties
-        this.player = new Player({scene:this.matter.world,x:1100, y:1650, texture:'player2', frame:'idle-down'});
+        this.player = new Player({scene:this.matter.world,x:1100, y:1650, texture:'player2', frame:'idle-down', label: 'player'});
         this.player.setDepth(5);
         this.player.inputKeys = this.input.keyboard.addKeys({
             up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -70,6 +105,10 @@ export default class MainScene extends Phaser.Scene {
     }
 
     update(){
+        console.log('mainScene active')
         this.player.update();
-    }s
+    }
+
+
+
 }
