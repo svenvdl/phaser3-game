@@ -6,12 +6,17 @@ import fountainSpritemap from '/assets/spritemaps/environment/Fountain_32x32.png
 import schoolSpritemap from '/assets/spritemaps/environment/noorderpoort.png';
 import environmentJson from '/assets/spritemaps/environment/mainScene2.json';
 
+let playerX = 1100
+let playerY = 1650
+
 export default class MainScene extends Phaser.Scene {
     constructor(){
         super("MainScene");
+        console.log('constructor');
     }
     
     preload(){
+        console.log('mainscene');
         Player.preload(this);
         this.load.image('natureTiles', environmentNatureSpritemap);
         this.load.image('autumnTiles', environmentAutumnSpritemap);
@@ -19,6 +24,18 @@ export default class MainScene extends Phaser.Scene {
         this.load.image('fountainTiles', fountainSpritemap);
         this.load.image('schoolTiles', schoolSpritemap);
         this.load.tilemapTiledJSON('mainScene', environmentJson);
+    }
+
+    init(data){
+        console.log('init', data);
+
+        if(data.playerX > 0){
+            playerX = data.playerX
+        }
+
+        if(data.playerY > 0){
+            playerY = data.playerY
+        }
     }
 
     create(){
@@ -79,18 +96,14 @@ export default class MainScene extends Phaser.Scene {
             for (var i = 0; i < event.pairs.length; i++){
                 var bodyA = getRootBody(event.pairs[i].bodyA);
                 var bodyB = getRootBody(event.pairs[i].bodyB);
-                console.log(bodyA);
-                console.log(bodyB);
             }
             if ((bodyA.label === 'Body' && bodyB.label === 'enterOffice') || (bodyB.label === 'Body' && bodyA.label === 'enterOffice')){
-                console.log('getting hit!')
-                this.scene.pause('mainScene');
                 this.scene.start('officeScene');
             }
         }, this);
 
         //add player properties
-        this.player = new Player({scene:this.matter.world,x:1100, y:1650, texture:'player2', frame:'idle-down', label: 'player'});
+        this.player = new Player({scene:this.matter.world,x:playerX, y:playerY, texture:'player2', frame:'idle-down', label: 'player'});
         this.player.setDepth(5);
         this.player.inputKeys = this.input.keyboard.addKeys({
             up: Phaser.Input.Keyboard.KeyCodes.W,

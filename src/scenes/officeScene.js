@@ -79,7 +79,6 @@ export default class OfficeScene extends Phaser.Scene {
         //label all interaction tiles within the matter physics engine
         collisionLayer.forEachTile(function (tile) {
             if (tile.properties.type === 'exitOffice') {
-                console.log(tile);
                 tile.physics.matterBody.body.label = 'exitOffice';
             }
         });
@@ -90,7 +89,7 @@ export default class OfficeScene extends Phaser.Scene {
             }
             while (body.parent !== body){
                 body = body.parent;
-            }
+            }d
             return body;
         }
 
@@ -98,13 +97,9 @@ export default class OfficeScene extends Phaser.Scene {
             for (var i = 0; i < event.pairs.length; i++){
                 var bodyA = getRootBody(event.pairs[i].bodyA);
                 var bodyB = getRootBody(event.pairs[i].bodyB);
-                console.log(bodyA);
-                console.log(bodyB);
             }
             if ((bodyA.label === 'Body' && bodyB.label === 'exitOffice') || (bodyB.label === 'Body' && bodyA.label === 'exitOffice')){
-                console.log('getting hit!')
-                this.scene.resume('mainScene');
-                this.scene.remove('officeScene');
+                this.scene.start('MainScene', {playerX: 1750, playerY: 1050})
             }
         }, this);
 
