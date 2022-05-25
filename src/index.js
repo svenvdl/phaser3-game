@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import PhaserMatterCollisionPlugin from 'phaser-matter-collision-plugin';
 import MainScene from './scenes/mainScene';
 import OfficeScene from './scenes/officeScene';
+import UIScene from './scenes/uiScene';
 
 
 const config = {
@@ -15,7 +16,7 @@ const config = {
 	height: window.innerHeight,
     pixelArt: true,
     backgroundColor: '#639BFF',
-    scene: [MainScene, OfficeScene],
+    scene: [MainScene, OfficeScene, UIScene],
     physics: {
         default: 'matter',
         matter: {
