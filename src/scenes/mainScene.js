@@ -6,6 +6,8 @@ import fountainSpritemap from '/assets/spritemaps/environment/Fountain_32x32.png
 import schoolSpritemap from '/assets/spritemaps/environment/noorderpoort.png';
 import environmentJson from '/assets/spritemaps/environment/mainScene2.json';
 
+const layerManager = require('/src/modules/layerManger');
+
 let playerX = 1100
 let playerY = 1650
 
@@ -58,21 +60,10 @@ export default class MainScene extends Phaser.Scene {
         const zLayer = map.createLayer('Front',[ tilesetNature, tilesetAutumn, tilesetFam, tilesetFountain, tilesetSchool],  this.cameras.main.width / 3, this.cameras.main.height / 4);
         const interactionLayer = map.createLayer('interaction',[ tilesetNature, tilesetAutumn, tilesetFam, tilesetFountain, tilesetSchool],  this.cameras.main.width / 3, this.cameras.main.height / 4);
 
-        //set collision and depth
-        interactionLayer.setCollisionByProperty({collides:true}).setDepth(3);
-        collisionLayer.setCollisionByProperty({collides:true}).setDepth(2);
-        environmentLayer.setCollisionByProperty({collides:true}).setDepth(3);
-        pathLayer.setCollisionByProperty({collides:true}).setDepth(4);
-        objectsLayer.setCollisionByProperty({collides:true}).setDepth(5);
-        zLayer.setCollisionByProperty({collides:false}).setDepth(6);
-        
-        //convert to tilemaps
-        this.matter.world.convertTilemapLayer(collisionLayer);
-        this.matter.world.convertTilemapLayer(environmentLayer);
-        this.matter.world.convertTilemapLayer(pathLayer);
-        this.matter.world.convertTilemapLayer(objectsLayer);
-        this.matter.world.convertTilemapLayer(interactionLayer);
-        this.matter.world.convertTilemapLayer(zLayer);
+        const Layers = [collisionLayer, environmentLayer, interactionLayer, pathLayer, objectsLayer, zLayer];
+
+        //use layer manager function to add layers to our scene, enable collision and set depth
+        layerManager.initiateLayers(this, Layers);
 
         //label all interaction tiles within the matter physics engine
         objectsLayer.forEachTile(function (tile) {

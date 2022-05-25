@@ -3,6 +3,7 @@ import PhaserMatterCollisionPlugin from 'phaser-matter-collision-plugin';
 import MainScene from './scenes/mainScene';
 import OfficeScene from './scenes/officeScene';
 
+
 const config = {
     type: Phaser.AUTO,
     scale: {

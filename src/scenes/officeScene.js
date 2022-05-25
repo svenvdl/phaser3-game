@@ -10,6 +10,7 @@ import environmentLivingroomSpritemap from '/assets/spritemaps/environment/offic
 import environmentBathroomSpritemap from '/assets/spritemaps/environment/office/3_Bathroom_Shadowless_32x32.png';
 import environmentJson from '/assets/spritemaps/environment/office/officeScene.json';
 
+const layerManager = require('/src/modules/layerManger');
 export default class OfficeScene extends Phaser.Scene {
     constructor(){
         super("officeScene");
@@ -57,24 +58,10 @@ export default class OfficeScene extends Phaser.Scene {
         const itemsLayer = map.createLayer('items', allTilesets,  this.cameras.main.width / 3, this.cameras.main.height / 4);
         const frontLayer = map.createLayer('Front', allTilesets,  this.cameras.main.width / 3, this.cameras.main.height / 4);
 
-        //set collision and depth
-        collisionLayer.setCollisionByProperty({collides:true}).setDepth(1);
-        backgroundLayer.setCollisionByProperty({collides:true}).setDepth(2);
-        obstructedLayer.setCollisionByProperty({collides:true}).setDepth(3);
-        floorLayer.setCollisionByProperty({collides:true}).setDepth(4);
-        wallsLayer.setCollisionByProperty({collides:true}).setDepth(5);
-        mainLayer.setCollisionByProperty({collides:true}).setDepth(6);
-        itemsLayer.setCollisionByProperty({collides:true}).setDepth(7);
-        frontLayer.setCollisionByProperty({collides:true}).setDepth(8);
-        
-        //convert to tilemaps
-        this.matter.world.convertTilemapLayer(collisionLayer);
-        this.matter.world.convertTilemapLayer(backgroundLayer);
-        this.matter.world.convertTilemapLayer(obstructedLayer);
-        this.matter.world.convertTilemapLayer(floorLayer);
-        this.matter.world.convertTilemapLayer(wallsLayer);
-        this.matter.world.convertTilemapLayer(mainLayer);
-        this.matter.world.convertTilemapLayer(frontLayer);
+        const Layers = [collisionLayer, backgroundLayer, obstructedLayer, floorLayer, wallsLayer, mainLayer, itemsLayer, frontLayer]
+
+        //use layer manager function to add layers to our scene, enable collision and set depth
+        layerManager.initiateLayers(this, Layers);
 
         //label all interaction tiles within the matter physics engine
         collisionLayer.forEachTile(function (tile) {
@@ -89,7 +76,7 @@ export default class OfficeScene extends Phaser.Scene {
             }
             while (body.parent !== body){
                 body = body.parent;
-            }d
+            }
             return body;
         }
 
