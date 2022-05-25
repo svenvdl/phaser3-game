@@ -8,17 +8,33 @@ export default class UIScene extends Phaser.Scene {
         this.score = 0;
     }
 
+    typewriteText(text){
+        const length = text.length
+        let i = 0
+        this.time.addEvent({
+            callback: () => {
+                this.label.text += text[i]
+                ++i
+            },
+            repeat: length - 1,
+            delay: 200
+        })
+    }
+
     create(){
         //  Our Text object to display the Score
-        var info = this.add.text(10, 10, 'Score: 0', { font: '48px Arial', fill: '#000000' });
-        var viewport = new Phaser.Geom.Rectangle();
+        let info = this.add.text(0, 0, 'Welcome to my interactive resume', { font: '16px Arial', fill: '#ffffff', stroke:'black', strokeThickness: 3});
 
-        viewportManager.getViewport(this.scale, viewport);
+        let viewportSize = new Phaser.Geom.Rectangle();
 
-        console.log("UISCENE is running");
-        info.setText('Score').setDepth(11);
-        info.setPosition(viewport.left, viewport.top);
-
+        let viewport = viewportManager.getViewport(this.scale, viewportSize);
+        
+        info.setDepth(11);
+        info.setPosition(viewport.left * 1.75 , viewport.bottom - 100);
+        this.scale.on('resize', function () {
+            viewport = viewportManager.getViewport(this.scale, viewportSize);
+            info.setPosition(viewport.left, viewport.top);
+        }, this);
     }
 
 }

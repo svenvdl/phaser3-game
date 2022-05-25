@@ -20,7 +20,6 @@ export default class MainScene extends Phaser.Scene {
     }
     
     preload(){
-        console.log('mainscene');
         Player.preload(this);
         this.load.image('natureTiles', environmentNatureSpritemap);
         this.load.image('autumnTiles', environmentAutumnSpritemap);
@@ -114,7 +113,6 @@ export default class MainScene extends Phaser.Scene {
     }
 
     update(){
-        console.log('mainScene active')
         this.player.update();
     }
 
