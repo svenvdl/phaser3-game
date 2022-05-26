@@ -7,6 +7,10 @@ import buildingFamSpritemap from '/assets/spritemaps/environment/building-fam.pn
 import fountainSpritemap from '/assets/spritemaps/environment/Fountain_32x32.png';
 import schoolSpritemap from '/assets/spritemaps/environment/noorderpoort.png';
 import environmentJson from '/assets/spritemaps/environment/mainScene2.json';
+//import assets for animated environment object Fountain
+import fountainAnimatedSpritemap from '/assets/spritemaps/environment/animated/fountain.png';
+import fountainAnimatedSpritemapAtlas from '/assets/spritemaps/environment/animated/fountain_atlas.json';
+import fountainAnimatedAnimations from '/assets/spritemaps/environment/animated/fountain_anim.json';
 
 const layerManager = require('/src/modules/layerManger');
 const cameraManager = require('/src/modules/cameraManager');
@@ -28,6 +32,8 @@ export default class MainScene extends Phaser.Scene {
         this.load.image('schoolTiles', schoolSpritemap);
         this.load.bitmapFont('font', fontPng, fontXml);
         this.load.tilemapTiledJSON('mainScene', environmentJson);
+        this.load.atlas('fountain', fountainAnimatedSpritemap, fountainAnimatedSpritemapAtlas)
+        this.load.animation('spraywater', fountainAnimatedAnimations)
     }
 
     init(data){
@@ -46,7 +52,6 @@ export default class MainScene extends Phaser.Scene {
         const Ui = this.scene.get('UIScene');
 
         Ui.showDialog('Welcome to my interactive Resume', 4000);
-
 
         //define map
         const map = this.make.tilemap({key: 'mainScene'});
@@ -70,6 +75,16 @@ export default class MainScene extends Phaser.Scene {
 
         //use layer manager function to add layers to our scene, enable collision and set depth
         layerManager.initiateLayers(this, Layers);
+
+        //add animated elements to the map
+        
+        const fountainSprite = this.add.sprite(1730, 1130, 'fountain');
+
+        fountainSprite.setDepth(6);
+        fountainSprite.play('spraywater', {repeat: -1});
+
+        // fountainSprite.play('sprayWater');
+
 
         //label all interaction tiles within the matter physics engine
         objectsLayer.forEachTile(function (tile) {

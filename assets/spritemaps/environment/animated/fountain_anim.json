@@ -1,0 +1,44 @@
+{
+    "anims": [
+        {
+            "key": "spraywater",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 10,
+            "frames": [
+                {
+                    "key": "fountain",
+                    "frame": "row-1-column-1"
+                },
+                {
+                    "key": "fountain",
+                    "frame": "row-1-column-2"
+                },
+                {
+                    "key": "fountain",
+                    "frame": "row-1-column-3"
+                },
+                {
+                    "key": "fountain",
+                    "frame": "row-1-column-4"
+                },
+                {
+                    "key": "fountain",
+                    "frame": "row-1-column-5"
+                },
+                {
+                    "key": "fountain",
+                    "frame": "row-1-column-6"
+                },
+                {
+                    "key": "fountain",
+                    "frame": "row-1-column-7"
+                },
+                {
+                    "key": "fountain",
+                    "frame": "row-1-column-8"
+                }
+            ]
+        }
+    ]
+}
