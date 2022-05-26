@@ -33,12 +33,12 @@ export default class OfficeScene extends Phaser.Scene {
         this.load.tilemapTiledJSON('officeScene', environmentJson);
     }
 
+
     create(){
-
         this.scene.run('UIScene')
-        let Ui = this.scene.get('UIScene');
+        const Ui = this.scene.get('UIScene');
 
-        dialogManager.showDialog(this, 'Fundament All Media', 7000, viewportManager);
+        Ui.showDialog('Fundament All Media', 4000);
 
         //define map
         const map = this.make.tilemap({key: 'officeScene'});

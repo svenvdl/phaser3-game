@@ -17,7 +17,6 @@ let playerY = 1650
 export default class MainScene extends Phaser.Scene {
     constructor(){
         super("MainScene");
-        console.log('constructor');
     }
     
     preload(){
@@ -32,8 +31,6 @@ export default class MainScene extends Phaser.Scene {
     }
 
     init(data){
-        console.log('init', data);
-
         if(data.playerX > 0){
             playerX = data.playerX
         }
@@ -46,7 +43,10 @@ export default class MainScene extends Phaser.Scene {
     create(){
 
         this.scene.run('UIScene')
-        const UI = this.scene.get('UIScene');
+        const Ui = this.scene.get('UIScene');
+
+        Ui.showDialog('Welcome to my interactive Resume', 4000);
+
 
         //define map
         const map = this.make.tilemap({key: 'mainScene'});

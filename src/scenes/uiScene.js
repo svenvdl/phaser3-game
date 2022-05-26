@@ -6,14 +6,14 @@ export default class UIScene extends Phaser.Scene {
         super('UIScene');
     }
 
-    create(){
-        setTimeout(() => {
-            dialogManager.showDialog(this, 'Welcome to my interactive resume', 7000, viewportManager);
-        }, 2000);
+    showDialog(text, duration){
+        var isVisible = this.scene.isActive();
+        console.log(isVisible + ' Running showDialog');
+        dialogManager.showDialog(this, text, duration, viewportManager);
     }
 
-    update(){
+    create(){}
 
-    }
+    update(){}
 
 }

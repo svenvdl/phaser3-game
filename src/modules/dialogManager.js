@@ -1,5 +1,6 @@
 function showDialog(scene, dialogText, duration, viewportManager) {
     
+    console.log(dialogText);
     //  Our Text object to display the Score
     let dialog = scene.add.text(0, 0, dialogText, { font: '32px Arial', fill: '#ffffff', stroke:'black', strokeThickness: 3});
 
@@ -7,7 +8,8 @@ function showDialog(scene, dialogText, duration, viewportManager) {
 
     let viewport = viewportManager.getViewport(scene.scale, viewportSize);
 
-    dialog.setDepth(11).setAlpha(0);
+    dialog.setAlpha(0);
+    scene.scene.bringToTop();
     dialog.setPosition(viewport.width * 0.35 , viewport.bottom * 0.75);
     scene.scale.on('resize', function () {
         viewport = viewportManager.getViewport(scene.scale, viewportSize);
@@ -32,7 +34,9 @@ function showDialog(scene, dialogText, duration, viewportManager) {
 
     setTimeout(() => {
         dialog.destroy();
+        scene.scene.stop();
     }, duration + 500);
+
 };
 
 module.exports = {showDialog};

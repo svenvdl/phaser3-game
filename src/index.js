@@ -16,7 +16,7 @@ const config = {
 	height: window.innerHeight,
     pixelArt: true,
     backgroundColor: '#639BFF',
-    scene: [MainScene, OfficeScene, UIScene],
+    scene: [MainScene, UIScene, OfficeScene],
     physics: {
         default: 'matter',
         matter: {
