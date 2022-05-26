@@ -8,7 +8,7 @@ import UIScene from './scenes/uiScene';
 const config = {
     type: Phaser.AUTO,
     scale: {
-        zoom:2
+        zoom:1
     },
     autoCenter: Phaser.Scale.CENTER_BOTH,
     parent: 'phaser-game',

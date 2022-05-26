@@ -9,6 +9,7 @@ import schoolSpritemap from '/assets/spritemaps/environment/noorderpoort.png';
 import environmentJson from '/assets/spritemaps/environment/mainScene2.json';
 
 const layerManager = require('/src/modules/layerManger');
+const cameraManager = require('/src/modules/cameraManager');
 
 let playerX = 1100
 let playerY = 1650
@@ -45,6 +46,7 @@ export default class MainScene extends Phaser.Scene {
     create(){
 
         this.scene.run('UIScene')
+        const UI = this.scene.get('UIScene');
 
         //define map
         const map = this.make.tilemap({key: 'mainScene'});
@@ -108,8 +110,7 @@ export default class MainScene extends Phaser.Scene {
         })
 
         //camera functions
-        this.cameras.main.fadeIn(1000);
-        this.cameras.main.startFollow(this.player);
+        cameraManager.setPlayerCam(this);
     }
 
     update(){

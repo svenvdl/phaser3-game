@@ -8,6 +8,7 @@
          "encoding":"base64",
          "height":90,
          "id":2,
+         "locked":true,
          "name":"Collision",
          "opacity":1,
          "type":"tilelayer",

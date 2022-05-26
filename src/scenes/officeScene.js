@@ -11,6 +11,9 @@ import environmentBathroomSpritemap from '/assets/spritemaps/environment/office/
 import environmentJson from '/assets/spritemaps/environment/office/officeScene.json';
 
 const layerManager = require('/src/modules/layerManger');
+const viewportManager = require('/src/modules/getViewport');
+const cameraManager = require('/src/modules/cameraManager');
+const dialogManager = require('/src/modules/dialogManager');
 export default class OfficeScene extends Phaser.Scene {
     constructor(){
         super("officeScene");
@@ -31,6 +34,11 @@ export default class OfficeScene extends Phaser.Scene {
     }
 
     create(){
+
+        this.scene.run('UIScene')
+        let Ui = this.scene.get('UIScene');
+
+        dialogManager.showDialog(this, 'Fundament All Media', 7000, viewportManager);
 
         //define map
         const map = this.make.tilemap({key: 'officeScene'});
@@ -100,12 +108,12 @@ export default class OfficeScene extends Phaser.Scene {
             right: Phaser.Input.Keyboard.KeyCodes.D
         })
 
+        
         //camera functions
-        this.cameras.main.fadeIn(1000);
-        this.cameras.main.startFollow(this.player);
+        cameraManager.setPlayerCam(this);
     }
 
     update(){
         this.player.update();
-    }s
+    }
 }
