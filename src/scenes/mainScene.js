@@ -1,6 +1,4 @@
 import Player from '../player/Player';
-import fontPng from '/assets/font/press-start.png';
-import fontXml from '/assets/font/press-start.xml';
 import environmentNatureSpritemap from '/assets/spritemaps/environment/RPG Nature Tileset.png';
 import environmentAutumnSpritemap from '/assets/spritemaps/environment/nature-autumn.png';
 import buildingFamSpritemap from '/assets/spritemaps/environment/building-fam.png';
@@ -30,7 +28,6 @@ export default class MainScene extends Phaser.Scene {
         this.load.image('famTiles', buildingFamSpritemap);
         this.load.image('fountainTiles', fountainSpritemap);
         this.load.image('schoolTiles', schoolSpritemap);
-        this.load.bitmapFont('font', fontPng, fontXml);
         this.load.tilemapTiledJSON('mainScene', environmentJson);
         this.load.atlas('fountain', fountainAnimatedSpritemap, fountainAnimatedSpritemapAtlas)
         this.load.animation('spraywater', fountainAnimatedAnimations)
