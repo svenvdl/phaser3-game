@@ -6,9 +6,11 @@ export default class UIScene extends Phaser.Scene {
         super('UIScene');
     }
 
+    showTitle(text, duration){
+        dialogManager.showTitle(this, text, duration, viewportManager);
+    }
+
     showDialog(text, duration){
-        var isVisible = this.scene.isActive();
-        console.log(isVisible + ' Running showDialog');
         dialogManager.showDialog(this, text, duration, viewportManager);
     }
 

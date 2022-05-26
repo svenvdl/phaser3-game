@@ -51,6 +51,7 @@ export default class MainScene extends Phaser.Scene {
         this.scene.run('UIScene')
         const Ui = this.scene.get('UIScene');
 
+        Ui.showTitle('Welcome to my interactive Resume', 4000);
         Ui.showDialog('Welcome to my interactive Resume', 4000);
 
         //define map
