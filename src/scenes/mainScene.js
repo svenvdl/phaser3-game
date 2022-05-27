@@ -41,7 +41,6 @@ export default class MainScene extends Phaser.Scene {
     }
 
     create(){
-
         this.scene.run('UIScene')
         const Ui = this.scene.get('UIScene');
 
@@ -101,6 +100,7 @@ export default class MainScene extends Phaser.Scene {
             down: Phaser.Input.Keyboard.KeyCodes.S,
             right: Phaser.Input.Keyboard.KeyCodes.D
         })
+        this.scene.run('JoystickScene', {player: this.player});
 
         //camera functions
         cameraManager.setPlayerCam(this);

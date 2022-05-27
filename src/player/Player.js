@@ -30,6 +30,9 @@ export default class Player extends Phaser.Physics.Matter.Sprite{
         return this.body.velocity;
     }
 
+    create(){
+    }
+
     update(){
         const speed = 2;
         let playerVelocity = new Phaser.Math.Vector2();
@@ -53,7 +56,6 @@ export default class Player extends Phaser.Physics.Matter.Sprite{
         playerVelocity.normalize();
         playerVelocity.scale(speed);
         this.setVelocity(playerVelocity.x, playerVelocity.y);
-
 
         if(Math.abs(this.velocity.x ) > 0.1 || Math.abs(this.velocity.y) > 0.1){
             if(this.inputKeys.left.isDown){

@@ -100,7 +100,7 @@ export default class OfficeScene extends Phaser.Scene {
             down: Phaser.Input.Keyboard.KeyCodes.S,
             right: Phaser.Input.Keyboard.KeyCodes.D
         })
-
+        this.scene.run('JoystickScene', {player: this.player});
         
         //camera functions
         cameraManager.setPlayerCam(this);
