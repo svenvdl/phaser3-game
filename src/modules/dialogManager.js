@@ -10,10 +10,10 @@ function showTitle(scene, dialogText, duration, viewportManager) {
 
     dialog.setAlpha(0);
     scene.scene.bringToTop();
-    dialog.setPosition(viewport.width * 0.30 , viewport.top + 200);
+    dialog.setPosition(viewport.width / 2 , viewport.top + 200).setOrigin(0.5);
     scene.scale.on('resize', function () {
         viewport = viewportManager.getViewport(scene.scale, viewportSize);
-        dialog.setPosition(viewport.width * 0.5 , viewport.bottom * 0.75);
+        dialog.setPosition(viewport.width / 2 , viewport.top + 200).setOrigin(0.5);
     }, scene);
 
     scene.tweens.add({
@@ -49,10 +49,10 @@ function showDialog(scene, dialogText, duration, viewportManager, alert) {
 
     dialog.setAlpha(0);
     scene.scene.bringToTop();
-    dialog.setPosition(viewport.width * 0.4 , viewport.bottom * 0.75);
+    dialog.setPosition(viewport.width / 2 , viewport.bottom * 0.75).setOrigin(0.5);
     scene.scale.on('resize', function () {
         viewport = viewportManager.getViewport(scene.scale, viewportSize);
-        dialog.setPosition(viewport.width * 0.5 , viewport.bottom * 0.75);
+        dialog.setPosition(viewport.width / 2 , viewport.bottom * 0.75).setOrigin(0.5);
     }, scene);
 
     if(alert){
