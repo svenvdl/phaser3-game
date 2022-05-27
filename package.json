@@ -1,6 +1,6 @@
 {
   "name": "phaser3-game",
-  "version": "1.1.2",
+  "version": "0.0.12",
   "description": "A Phaser 3 gamified resume",
   "main": "src/index.js",
   "scripts": {

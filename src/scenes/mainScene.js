@@ -14,9 +14,9 @@ const layerManager = require('/src/modules/layerManger');
 const cameraManager = require('/src/modules/cameraManager');
 const collisionManager = require('/src/modules/collisionManager');
 
-let playerX = 1100
-let playerY = 1650
-
+var startingTileIndex = 646
+var playerX = 0;
+var playerY = 0;
 export default class MainScene extends Phaser.Scene {
     constructor(){
         super("MainScene");
@@ -35,12 +35,8 @@ export default class MainScene extends Phaser.Scene {
     }
 
     init(data){
-        if(data.playerX > 0){
-            playerX = data.playerX
-        }
-
-        if(data.playerY > 0){
-            playerY = data.playerY
+        if(data.startingTile > 0){
+            startingTileIndex = data.startingTile
         }
     }
 
@@ -80,6 +76,7 @@ export default class MainScene extends Phaser.Scene {
         fountainSprite.setDepth(6);
         fountainSprite.play('spraywater', {repeat: -1});
 
+
         //add collision events
         collisionManager.setTileCollisionLabels(objectsLayer, 'enterOffice');
         this.matter.world.on('collisionstart', function (event) {
@@ -89,6 +86,13 @@ export default class MainScene extends Phaser.Scene {
         }, this);
 
         //add player properties
+        collisionLayer.forEachTile(function (tile) {
+            if (tile.index === startingTileIndex) {
+                playerX = collisionLayer.tileToWorldX(tile.x);
+                playerY = collisionLayer.tileToWorldY(tile.y);
+            }
+        });
+
         this.player = new Player({scene:this.matter.world,x:playerX, y:playerY, texture:'player2', frame:'idle-down', label: 'player'});
         this.player.setDepth(5);
         this.player.inputKeys = this.input.keyboard.addKeys({

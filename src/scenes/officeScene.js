@@ -13,6 +13,9 @@ import environmentJson from '/assets/spritemaps/environment/office/officeScene.j
 const layerManager = require('/src/modules/layerManger');
 const cameraManager = require('/src/modules/cameraManager');
 const collisionManager = require('/src/modules/collisionManager');
+
+var playerX
+var playerY
 export default class OfficeScene extends Phaser.Scene {
     constructor(){
         super("officeScene");
@@ -75,12 +78,21 @@ export default class OfficeScene extends Phaser.Scene {
         collisionManager.setTileCollisionLabels(collisionLayer, 'exitOffice');
         this.matter.world.on('collisionstart', function (event) {
             if(collisionManager.handleTileBodyCollision(event, 'Body', 'exitOffice')){
-                this.scene.start('MainScene', {playerX: 1750, playerY: 1050});
+                this.scene.start('MainScene', {startingTile: 649});
             }
         }, this);
 
+
         //add player properties
-        this.player = new Player({scene:this.matter.world,x:2000, y:1380, texture:'player2', frame:'idle-down'});
+        collisionLayer.forEachTile(function (tile) {
+            if (tile.index === 6051) {
+                playerX = collisionLayer.tileToWorldX(tile.x) + 15;
+                playerY = collisionLayer.tileToWorldY(tile.y) + 15;
+            }
+        });
+
+        //add player properties
+        this.player = new Player({scene:this.matter.world,x:playerX, y:playerY, texture:'player2', frame:'idle-down'});
         this.player.setDepth(7);
         this.player.inputKeys = this.input.keyboard.addKeys({
             up: Phaser.Input.Keyboard.KeyCodes.W,
