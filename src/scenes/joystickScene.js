@@ -18,6 +18,7 @@ export default class JoystickScene extends Phaser.Scene {
     }
 
     create(){
+        let deviceOs = this.sys.game.device.os;
         let viewportSize = new Phaser.Geom.Rectangle();
         let viewport = viewportManager.getViewport(this.scale, viewportSize);
         let circle1 = this.add.circle(0, 0, 100, 0x888888);
@@ -37,7 +38,8 @@ export default class JoystickScene extends Phaser.Scene {
 
         this.text = this.add.text(0, 0);
         this.scene.bringToTop();
-        if(viewport.width < 960){
+        console.log(deviceOs);
+        if(deviceOs.android || deviceOs.iOS){
             this.joyStick.setVisible(true);
             circle1.setVisible(true);
             circle2.setVisible(true);
@@ -71,10 +73,8 @@ export default class JoystickScene extends Phaser.Scene {
     }
 
     update(){
-
-        let viewportSize = new Phaser.Geom.Rectangle();
-        let viewport = viewportManager.getViewport(this.scale, viewportSize);
-        if(viewport.width < 960){
+        let deviceOs = this.sys.game.device.os;
+        if(deviceOs.android || deviceOs.iOS){
             var leftKeyDown = this.joyStick.left;
             var rightKeyDown = this.joyStick.right;
             var upKeyDown = this.joyStick.up;

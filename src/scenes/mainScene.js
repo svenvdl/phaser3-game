@@ -69,8 +69,16 @@ export default class MainScene extends Phaser.Scene {
         //use layer manager function to add layers to our scene, enable collision and set depth
         layerManager.initiateLayers(this, Layers);
 
+        let fountainX
+        let fountainY
+        collisionLayer.forEachTile(function (tile) {
+            if (tile.index === 649) {
+                fountainX = collisionLayer.tileToWorldX(tile.x)+28;
+                fountainY = collisionLayer.tileToWorldY(tile.y)+80;
+            }
+        });
         //add animated elements to the map
-        const fountainSprite = this.add.sprite(1730, 1130, 'fountain');
+        const fountainSprite = this.add.sprite(fountainX, fountainY, 'fountain');
 
         fountainSprite.setDepth(6);
         fountainSprite.play('spraywater', {repeat: -1});
@@ -104,6 +112,21 @@ export default class MainScene extends Phaser.Scene {
 
         //camera functions
         cameraManager.setPlayerCam(this);
+
+
+        //debugging functions
+        function getTileAtPointer(pointer, layer) {
+            return layer.getTileAtWorldXY(pointer.worldX, pointer.worldY, true);
+        }
+
+        this.input.on('pointerdown', function onPointerDown(pointer) {
+            var tile = getTileAtPointer(pointer, collisionLayer);
+            
+            if (!tile) return;
+            
+            console.log(`(${tile.x}, ${tile.y}) on ${tile.layer.name}`, tile);
+        });
+        
     }
 
     update(){
