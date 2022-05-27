@@ -88,12 +88,12 @@ export default class MainScene extends Phaser.Scene {
         //add player properties
         collisionLayer.forEachTile(function (tile) {
             if (tile.index === startingTileIndex) {
-                playerX = collisionLayer.tileToWorldX(tile.x);
-                playerY = collisionLayer.tileToWorldY(tile.y);
+                playerX = collisionLayer.tileToWorldX(tile.x)+16;
+                playerY = collisionLayer.tileToWorldY(tile.y)+14;
             }
         });
 
-        this.player = new Player({scene:this.matter.world,x:playerX, y:playerY, texture:'player2', frame:'idle-down', label: 'player'});
+        this.player = new Player({scene:this.matter.world,x:playerX, y:playerY, texture:'player2', label: 'player'});
         this.player.setDepth(5);
         this.player.inputKeys = this.input.keyboard.addKeys({
             up: Phaser.Input.Keyboard.KeyCodes.W,

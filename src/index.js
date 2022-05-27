@@ -4,6 +4,7 @@ import MainScene from './scenes/mainScene';
 import OfficeScene from './scenes/officeScene';
 import UIScene from './scenes/uiScene';
 import phaserJuice from "./plugins/phaserJuicePlugin.min.js"
+import rexUI from "./plugins/rexuiplugin.min.js"
 
 
 const config = {
@@ -28,7 +29,8 @@ const config = {
     plugins: {
         scene:[
             {plugin: PhaserMatterCollisionPlugin},
-            { key: 'phaserJuice', plugin: phaserJuice, mapping: 'juice' }
+            { key: 'phaserJuice', plugin: phaserJuice, mapping: 'juice' },
+            { key: 'rexUI', plugin: rexUI, mapping: 'rexUI' }
         ]
     }
 };

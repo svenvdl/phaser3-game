@@ -6,8 +6,8 @@ import playerAnimations from '/assets/spritemaps/player/player2_anim.json';
 var lastPressed = '';
 export default class Player extends Phaser.Physics.Matter.Sprite{
     constructor(data){
-        let {scene,x,y,texture,frame} = data;
-        super(scene,x,y,texture,frame);
+        let {scene,x,y,texture} = data;
+        super(scene,x,y,texture);
         this.scene.add.existing(this);
 
         const {Body, Bodies} = Phaser.Physics.Matter.Matter;

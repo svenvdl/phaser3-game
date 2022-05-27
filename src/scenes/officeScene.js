@@ -92,7 +92,7 @@ export default class OfficeScene extends Phaser.Scene {
         });
 
         //add player properties
-        this.player = new Player({scene:this.matter.world,x:playerX, y:playerY, texture:'player2', frame:'idle-down'});
+        this.player = new Player({scene:this.matter.world,x:playerX, y:playerY, frame:'idle-down'});
         this.player.setDepth(7);
         this.player.inputKeys = this.input.keyboard.addKeys({
             up: Phaser.Input.Keyboard.KeyCodes.W,
