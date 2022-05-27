@@ -3,6 +3,7 @@ import PhaserMatterCollisionPlugin from 'phaser-matter-collision-plugin';
 import MainScene from './scenes/mainScene';
 import OfficeScene from './scenes/officeScene';
 import UIScene from './scenes/uiScene';
+import phaserJuice from "./plugins/phaserJuicePlugin.min.js"
 
 
 const config = {
@@ -26,9 +27,8 @@ const config = {
     },
     plugins: {
         scene:[
-            {
-                plugin: PhaserMatterCollisionPlugin
-            }
+            {plugin: PhaserMatterCollisionPlugin},
+            { key: 'phaserJuice', plugin: phaserJuice, mapping: 'juice' }
         ]
     }
 };

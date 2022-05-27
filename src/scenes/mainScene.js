@@ -12,6 +12,7 @@ import fountainAnimatedAnimations from '/assets/spritemaps/environment/animated/
 
 const layerManager = require('/src/modules/layerManger');
 const cameraManager = require('/src/modules/cameraManager');
+const collisionManager = require('/src/modules/collisionManager');
 
 let playerX = 1100
 let playerY = 1650
@@ -75,39 +76,15 @@ export default class MainScene extends Phaser.Scene {
         layerManager.initiateLayers(this, Layers);
 
         //add animated elements to the map
-        
         const fountainSprite = this.add.sprite(1730, 1130, 'fountain');
 
         fountainSprite.setDepth(6);
         fountainSprite.play('spraywater', {repeat: -1});
 
-        // fountainSprite.play('sprayWater');
-
-
-        //label all interaction tiles within the matter physics engine
-        objectsLayer.forEachTile(function (tile) {
-            if (tile.properties.type === 'enterOffice') {
-                console.log(tile);
-                tile.physics.matterBody.body.label = 'enterOffice';
-            }
-        });
-
-        function getRootBody(body){
-            if (body.parent === body) { 
-                return body; 
-            }
-            while (body.parent !== body){
-                body = body.parent;
-            }
-            return body;
-        }
-
+        //add collision events
+        collisionManager.setTileCollisionLabels(objectsLayer, 'enterOffice');
         this.matter.world.on('collisionstart', function (event) {
-            for (var i = 0; i < event.pairs.length; i++){
-                var bodyA = getRootBody(event.pairs[i].bodyA);
-                var bodyB = getRootBody(event.pairs[i].bodyB);
-            }
-            if ((bodyA.label === 'Body' && bodyB.label === 'enterOffice') || (bodyB.label === 'Body' && bodyA.label === 'enterOffice')){
+            if(collisionManager.handleTileBodyCollision(event, 'Body', 'enterOffice')){
                 this.scene.start('officeScene');
             }
         }, this);

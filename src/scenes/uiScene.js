@@ -10,8 +10,8 @@ export default class UIScene extends Phaser.Scene {
         dialogManager.showTitle(this, text, duration, viewportManager);
     }
 
-    showDialog(text, duration){
-        dialogManager.showDialog(this, text, duration, viewportManager);
+    showDialog(text, duration, alert){
+        dialogManager.showDialog(this, text, duration, viewportManager, alert);
     }
 
     create(){}

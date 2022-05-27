@@ -11,9 +11,8 @@ import environmentBathroomSpritemap from '/assets/spritemaps/environment/office/
 import environmentJson from '/assets/spritemaps/environment/office/officeScene.json';
 
 const layerManager = require('/src/modules/layerManger');
-const viewportManager = require('/src/modules/getViewport');
 const cameraManager = require('/src/modules/cameraManager');
-const dialogManager = require('/src/modules/dialogManager');
+const collisionManager = require('/src/modules/collisionManager');
 export default class OfficeScene extends Phaser.Scene {
     constructor(){
         super("officeScene");
@@ -71,30 +70,11 @@ export default class OfficeScene extends Phaser.Scene {
         //use layer manager function to add layers to our scene, enable collision and set depth
         layerManager.initiateLayers(this, Layers);
 
-        //label all interaction tiles within the matter physics engine
-        collisionLayer.forEachTile(function (tile) {
-            if (tile.properties.type === 'exitOffice') {
-                tile.physics.matterBody.body.label = 'exitOffice';
-            }
-        });
-
-        function getRootBody(body){
-            if (body.parent === body) { 
-                return body; 
-            }
-            while (body.parent !== body){
-                body = body.parent;
-            }
-            return body;
-        }
-
+        //add collision events
+        collisionManager.setTileCollisionLabels(collisionLayer, 'exitOffice');
         this.matter.world.on('collisionstart', function (event) {
-            for (var i = 0; i < event.pairs.length; i++){
-                var bodyA = getRootBody(event.pairs[i].bodyA);
-                var bodyB = getRootBody(event.pairs[i].bodyB);
-            }
-            if ((bodyA.label === 'Body' && bodyB.label === 'exitOffice') || (bodyB.label === 'Body' && bodyA.label === 'exitOffice')){
-                this.scene.start('MainScene', {playerX: 1750, playerY: 1050})
+            if(collisionManager.handleTileBodyCollision(event, 'Body', 'exitOffice')){
+                this.scene.start('MainScene', {playerX: 1750, playerY: 1050});
             }
         }, this);
 

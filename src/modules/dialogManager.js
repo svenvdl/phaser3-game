@@ -39,7 +39,7 @@ function showTitle(scene, dialogText, duration, viewportManager) {
 
 };
 
-function showDialog(scene, dialogText, duration, viewportManager) {
+function showDialog(scene, dialogText, duration, viewportManager, alert) {
     //  Our Text object to display the Score
     let dialog = scene.add.text(0, 0, dialogText, { font: '24px Arial', fill: '#ffffff', stroke:'black', strokeThickness: 3});
 
@@ -49,18 +49,22 @@ function showDialog(scene, dialogText, duration, viewportManager) {
 
     dialog.setAlpha(0);
     scene.scene.bringToTop();
-    dialog.setPosition(viewport.width * 0.30 , viewport.bottom * 0.75);
+    dialog.setPosition(viewport.width * 0.4 , viewport.bottom * 0.75);
     scene.scale.on('resize', function () {
         viewport = viewportManager.getViewport(scene.scale, viewportSize);
         dialog.setPosition(viewport.width * 0.5 , viewport.bottom * 0.75);
     }, scene);
+
+    if(alert){
+        scene.juice.shakeY(dialog);
+    }
 
     scene.tweens.add({
         targets: dialog,
         alpha: 1,
         duration: 500,
         ease: 'Power2'
-        }, scene);    
+        }, scene);
     
     setTimeout(() => {
         scene.tweens.add({
