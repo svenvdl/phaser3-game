@@ -1,25 +1,28 @@
 const viewportManager = require('/src/modules/getViewport');
-const dialogManager = require('/src/modules/dialogManager');
 
 export default class UIScene extends Phaser.Scene {
     constructor(){
         super('UIScene');
     }
 
-    showTitle(text, duration){
-        dialogManager.showTitle(this, text, duration, viewportManager);
-    }
-
-    showDialog(text, duration, alert){
-        dialogManager.showDialog(this, text, duration, viewportManager, alert);
-    }
-
     preload(){
     }
 
-    create(){}
+    create(){
+        var div = document.createElement('div');
+        div.style = 'background-color: #f7ebba; width: 250px; height: 100px; font: 11px Arial; font-weight: bold; z-index:99';
+        div.innerText = 'Proin eget tortor risus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+        console.log(div);
+
+        var container = this.add.container(400, 300);
+        var element = this.add.dom(0, 0, div);
+        container.add(element);
+        this.scene.bringToTop;
+    }
     
 
-    update(){}
+    update(){
+        // console.log('uiScene active');
+    }
 
 }

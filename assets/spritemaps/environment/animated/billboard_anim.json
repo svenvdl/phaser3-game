@@ -1,0 +1,164 @@
+{
+    "anims": [
+        {
+            "key": "billboard",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 6,
+            "frames": [
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-1"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-1"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-1"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-1"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-1"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-1"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-1"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-1"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-1"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-1"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-1"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-1"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-2"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-3"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-4"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-5"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-6"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-7"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-8"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-9"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-9"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-9"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-9"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-9"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-9"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-9"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-9"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-9"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-9"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-9"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-9"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-10"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-11"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-13"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-12"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-14"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-15"
+                },
+                {
+                    "key": "billboard",
+                    "frame": "row-1-column-16"
+                }
+            ]
+        }
+    ]
+}

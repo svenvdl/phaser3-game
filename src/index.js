@@ -3,11 +3,11 @@ import PhaserMatterCollisionPlugin from 'phaser-matter-collision-plugin';
 import MainScene from './scenes/mainScene';
 import OfficeScene from './scenes/officeScene';
 import UIScene from './scenes/uiScene';
+import titleScene from './scenes/titleScene';
 import JoystickScene from './scenes/joystickScene';
 import phaserJuice from "./plugins/phaserJuicePlugin.min.js"
 import rexUI from "./plugins/rexuiplugin.min.js"
 import VirtualJoystickPlugin from "./plugins/rexvirtualjoystickplugin.min.js"
-
 
 const config = {
     type: Phaser.AUTO,
@@ -20,7 +20,7 @@ const config = {
 	height: window.innerHeight,
     pixelArt: true,
     backgroundColor: '#639BFF',
-    scene: [MainScene, UIScene, OfficeScene, JoystickScene],
+    scene: [MainScene, titleScene, UIScene, OfficeScene, JoystickScene],
     physics: {
         default: 'matter',
         matter: {

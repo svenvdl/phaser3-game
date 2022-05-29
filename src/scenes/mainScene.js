@@ -10,6 +10,10 @@ import fountainAnimatedSpritemap from '/assets/spritemaps/environment/animated/f
 import fountainAnimatedSpritemapAtlas from '/assets/spritemaps/environment/animated/fountain_atlas.json';
 import fountainAnimatedAnimations from '/assets/spritemaps/environment/animated/fountain_anim.json';
 
+import billboardAnimatedSpritemap from '/assets/spritemaps/environment/animated/billboard.png';
+import billboardAnimatedSpritemapAtlas from '/assets/spritemaps/environment/animated/billboard_atlas.json';
+import billboardAnimatedAnimations from '/assets/spritemaps/environment/animated/billboard_anim.json';
+
 const layerManager = require('/src/modules/layerManger');
 const cameraManager = require('/src/modules/cameraManager');
 const collisionManager = require('/src/modules/collisionManager');
@@ -31,7 +35,9 @@ export default class MainScene extends Phaser.Scene {
         this.load.image('schoolTiles', schoolSpritemap);
         this.load.tilemapTiledJSON('mainScene', environmentJson);
         this.load.atlas('fountain', fountainAnimatedSpritemap, fountainAnimatedSpritemapAtlas)
+        this.load.atlas('billboard', billboardAnimatedSpritemap, billboardAnimatedSpritemapAtlas)
         this.load.animation('spraywater', fountainAnimatedAnimations)
+        this.load.animation('billboard', billboardAnimatedAnimations)
     }
 
     init(data){
@@ -42,7 +48,8 @@ export default class MainScene extends Phaser.Scene {
 
     create(){
         this.scene.run('UIScene')
-        const Ui = this.scene.get('UIScene');
+        this.scene.run('titleScene')
+        const Ui = this.scene.get('titleScene');
 
         Ui.showTitle('Career island', 3000);
 
@@ -77,12 +84,25 @@ export default class MainScene extends Phaser.Scene {
                 fountainY = collisionLayer.tileToWorldY(tile.y)+80;
             }
         });
+
+        let billboardX
+        let billboardY
+        collisionLayer.forEachTile(function (tile) {
+            if (tile.index === 653) {
+                billboardX = collisionLayer.tileToWorldX(tile.x);
+                billboardY = collisionLayer.tileToWorldY(tile.y-1);
+            }
+        });
+
         //add animated elements to the map
         const fountainSprite = this.add.sprite(fountainX, fountainY, 'fountain');
+        const billboardSprite = this.add.sprite(billboardX, billboardY, 'billboard');
 
         fountainSprite.setDepth(6);
         fountainSprite.play('spraywater', {repeat: -1});
 
+        billboardSprite.setDepth(6);
+        billboardSprite.play('billboard', {repeat: -1});
 
         //add collision events
         collisionManager.setTileCollisionLabels(objectsLayer, 'enterOffice');

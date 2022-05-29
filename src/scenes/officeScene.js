@@ -37,8 +37,8 @@ export default class OfficeScene extends Phaser.Scene {
 
 
     create(){
-        this.scene.run('UIScene')
-        const Ui = this.scene.get('UIScene');
+        this.scene.run('titleScene')
+        const Ui = this.scene.get('titleScene');
 
         Ui.showTitle('Fundament All Media', 4000);
         Ui.showDialog('Frontend developer September 2017 - Now', 4000);
